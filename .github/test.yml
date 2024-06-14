@@ -1,0 +1,20 @@
+name: VUnit Tests
+on:
+  push:
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container: ghdl/vunit:mcode
+    steps:
+      - name: Install git on container
+        run: |
+          apt update
+          apt install -y git
+      - uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+      - name: Install python dependencies
+        run: pip install -r tsfpga/tsfpga/requirements.txt
+      - name: Run  simulations
+        run: python run.py
