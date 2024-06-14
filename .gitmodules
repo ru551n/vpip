@@ -4,3 +4,6 @@
 [submodule "vunit"]
 	path = vunit
 	url = git@github.com:VUnit/vunit.git
+[submodule "tsfpga"]
+	path = tsfpga
+	url = git@github.com:tsfpga/tsfpga.git
