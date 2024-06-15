@@ -1,0 +1,35 @@
+location: vendor/gitman
+
+sources:
+  - repo: https://github.com/Digilent/vivado-library.git
+    name: digilent
+    rev: master
+    links:
+      - source: ip/MIPI_CSI_2_RX
+        target: modules/mipi
+  - repo: https://github.com/tsfpga/tsfpga.git
+    name: tsfpga
+    rev: main
+    links: 
+      - target: tsfpga
+  - rep: https://github.com/hdl-modules/hdl-modules.git
+    name: hdl-modules
+    rev: main
+    links:
+      - target: hdl-modules
+  - repo: https://github.com/VUnit/vunit.git
+    name: vunit
+    rev: master
+    scripts:
+      - git submodule update --init --recursive
+    links:
+    - target: vunit
+
+groups:
+  - name: all
+    members:
+      - digilent
+      - tsfpga
+      - vunit
+
+default_group: all
