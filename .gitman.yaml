@@ -12,8 +12,8 @@ sources:
     rev: main
     links: 
       - target: tsfpga
-      - scripts:
-        - pip install -r tsfpga/requirements.txt
+    scripts:
+      - pip install -r tsfpga/requirements.txt
   - repo: https://github.com/hdl-modules/hdl-modules.git
     name: hdl-modules
     rev: main
