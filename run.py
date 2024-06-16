@@ -36,9 +36,11 @@ def main():
     """
     cli = get_arguments_cli(default_output_path=OUTPUT_PATH)
     args = cli.parse_args()
+    
+    module_names_avoid = set(["hard_fifo"]) if args.vivado_skip else None
 
     modules = get_modules(modules_folder=REPO_ROOT / "modules")
-    modules_no_sim = get_modules(modules_folder= REPO_ROOT / "hdl-modules" / "modules")
+    modules_no_sim = get_modules(modules_folder= REPO_ROOT / "hdl-modules" / "modules", names_avoid=module_names_avoid)
     
     simulation_project = SimulationProject(args=args, enable_preprocessing=True)
     simulation_project.add_modules(args=args, modules=modules, modules_no_sim=modules_no_sim)
