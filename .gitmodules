@@ -1,6 +1,3 @@
-[submodule "hdl-modules"]
-	path = hdl-modules
-	url = git@github.com:hdl-modules/hdl-modules.git
 [submodule "vunit"]
 	path = vunit
 	url = git@github.com:VUnit/vunit.git
