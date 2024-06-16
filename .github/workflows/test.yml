@@ -19,4 +19,4 @@ jobs:
       - name: Gitman update
         run: gitman update
       - name: Run simulations
-        run: python run.py
+        run: python run.py --vivado-skip

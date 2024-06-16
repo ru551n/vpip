@@ -10,8 +10,10 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).parent.resolve()
 TSFPGA_PATH = REPO_ROOT / "tsfpga"
 VUNIT_PATH = REPO_ROOT / "vunit"
+HDL_REGISTERS_PATH = REPO_ROOT / "vunit"
 sys.path.insert(0, str(TSFPGA_PATH))
 sys.path.insert(0, str(VUNIT_PATH))
+sys.path.insert(0, str(HDL_REGISTERS_PATH))
 
 from tsfpga.examples.simulation_utils import create_vhdl_ls_configuration
 
@@ -34,11 +36,13 @@ def main():
     args = cli.parse_args()
 
     modules = get_modules(modules_folder=REPO_ROOT / "modules")
-    modules_no_sim = get_modules(modules_folder=REPO_ROOT / "hdl-module" / "modules")
+    modules += get_modules(modules_folder=REPO_ROOT / "hdl-module" / "modules")
 
     simulation_project = SimulationProject(args=args)
-    simulation_project.add_modules(args=args, modules=modules, modules_no_sim=modules_no_sim)
-    simulation_project.add_vivado_simlib()
+    simulation_project.add_modules(args=args, modules=modules)
+    
+    if not args.vivado_skip:
+        simulation_project.add_vivado_simlib()
     
     create_vhdl_ls_configuration(
         output_path=REPO_ROOT,
